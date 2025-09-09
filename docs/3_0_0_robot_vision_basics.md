@@ -4,10 +4,10 @@ Machine Vision Devices connect to robot controllers through the wenglor robot se
 
 ## Robot Vision Features
 
-- Communication to supported robot manufacturers (listed in the dropdown of Robot Manufacturer on the device website of the Machine Vision Device at the tab “Jobs”) . Using `Generic` in the dropdown allows the communication to further robot manufacturers via the generic string based robot vision API (see chapter [4.5 Generic Robot Vision Interface](4_0_robot_vision_server/4_5_0_generic_robots.md)).
+- Communication to supported robot manufacturers (listed in the dropdown of Robot Manufacturer on the device website of the Machine Vision Device at the tab `Jobs`) . Using `Generic` in the dropdown allows the communication to further robot manufacturers via the generic string based robot vision API (see chapter [4.5 Generic Robot Vision Interface](4_0_robot_vision_server/4_5_0_generic_robots.md)).
 - Camera on robot or not on robot.
 - If the camera is tilted towards the measuring or picking plane, the calibration compensates for this. Extreme angles should be avoided.
-- Hand-eye calibration of robot and camera via several calibration poses where the camera looks from different positions on the calibration plate (Use one of the different calibration plates [ZVZJ](https://www.wenglor.com/en/Accessories/Optics-Filters-Deflectors-and-Focusers/Calibration-Plates/c/cxmCID222488) that fit with your use case).
+- Hand-eye calibration of robot and camera via several calibration poses where the camera looks from different positions on the calibration. Buy one of the different calibration plates [ZVZJ](https://www.wenglor.com/en/Accessories/Optics-Filters-Deflectors-and-Focusers/Calibration-Plates/c/cxmCID222488) (recommended) or print the corresponding PDF on flat and stiff material by yourself.
 - Calibration (including elimination of lens distortion and calculating in mm) is done within the robot server (no separate `Module Image Calibration` within the [uniVision](https://www.wenglor.com/en/Machine-Vision/Machine-Vision-Software/Image-Processing-Software-uniVision-3/c/cxmCID222459) job is required).
 - Use `Device Robot Vision` within the [uniVision](https://www.wenglor.com/en/Machine-Vision/Machine-Vision-Software/Image-Processing-Software-uniVision-3/c/cxmCID222459) job for the communication to the robot server
 

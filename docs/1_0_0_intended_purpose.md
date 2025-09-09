@@ -5,7 +5,7 @@ Machine Vision Devices can communicate directly to robots for [robot vision](htt
 **Supported Machine Vision Devices:**
 
 - [Smart Camera B60](https://www.wenglor.com/en/Machine-Vision/Smart-Cameras-and-Vision-Sensors/Smart-Camera-B60/c/cxmCID221375)
-- [Machine Vision Controller MVC](https://www.wenglor.com/en/Machine-Vision/Machine-Vision-Controllers/c/cxmCID221381) with [Machine Vision Cameras BBVK](https://www.wenglor.com/en/Product-Highlights-BBVK-Machine-Vision-Cameras/s/Produkthighlights+Machine+Vision+Cameras+BBVK)
+- [Machine Vision Controller MVC](https://www.wenglor.com/en/Machine-Vision/Machine-Vision-Controllers/c/cxmCID221381) with Machine Vision Cameras [BBVK](https://www.wenglor.com/en/Product-Highlights-BBVK-Machine-Vision-Cameras/s/Produkthighlights+Machine+Vision+Cameras+BBVK) (recommended) and [BBZK](https://www.wenglor.com/en/Machine-Vision-Cameras-Portfolio/s/Machine+Vision+Cameras+Portfolio)
 
 > **NOTE**
 >
