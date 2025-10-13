@@ -18,18 +18,17 @@ nav:
   - index.md
   - 1_0_0_intended_purpose.md
   - 2_0_0_network_overview.md
-  - 3_0_0_robot_vision_basics.md
+  - 3_0_0_robot_vision_setup.md
   - 4. Wenglor Robot Server:
       - 4_0_robot_vision_server/index.md
-      - 4.1 Basics with Robot Server:
-          - 4_0_robot_vision_server/4_1_basics/index.md
-          - 4_0_robot_vision_server/4_1_basics/4_1_1_camera_on_robot.md
-          - 4_0_robot_vision_server/4_1_basics/4_1_2_camera_not_on_robot.md
+      - 4.1 Calibration Guidelines:
+          - 4_0_robot_vision_server/4_1_calibration_guidelines/index.md
+          - 4_0_robot_vision_server/4_1_calibration_guidelines/4_1_1_camera_on_robot.md
+          - 4_0_robot_vision_server/4_1_calibration_guidelines/4_1_2_camera_not_on_robot.md
       - 4_0_robot_vision_server/4_2_0_settings_on_device_website.md
       - 4_0_robot_vision_server/4_3_0_calibration_job_in_univision.md
       - 4_0_robot_vision_server/4_4_0_detection_job_in_univision.md
-      - 4_0_robot_vision_server/4_5_0_generic_robots.md
-      - 4_0_robot_vision_server/4_6_0_generic_robot_vision_api.md
+      - 4_0_robot_vision_server/4_5_0_generic_robot_vision_interface.md
   - 5_0_0_change_index_of_operating_instructions.md
 
 markdown_extensions:

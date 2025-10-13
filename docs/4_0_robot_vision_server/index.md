@@ -1,6 +1,6 @@
 # 4. Wenglor Robot Server
 
-The wenglor robot server supports the communication to specific robot manufacturers. For details, check the dropdown list of robot manufacturers on the device website of the Machine Vision Device and the operating instructions of the device. Using `Generic` in the dropdown allows the communication to further robot manufacturers via the generic string-based robot vision API (see chapter [4.5 Generic Robots](4_5_0_generic_robots.md)).
+The wenglor robot server supports the communication to specific robot manufacturers. For details, check the dropdown list of robot manufacturers on the device website of the Machine Vision Device and the operating instructions of the device. Using `Generic` in the dropdown allows the communication to further robot manufacturers via the generic string-based robot vision API (see chapter [4.5 Generic Robot Vision Interface](4_5_0_generic_robot_vision_interface.md)).
 
 It is possible to mount the camera on the robot or not on the robot. Even slightly tilting the camera towards the measuring or picking plane is supported.
 
