@@ -2,7 +2,7 @@
 
 If the camera is not on the robot, the calibration process consists of two steps.
 
-For the first step of the calibration process, mount the calibration plate on the robot. Teach minimum five calibration poses (e.g. seven to eleven poses). For more accurate results, teach further calibration poses.
+For the first step of the calibration process, mount the calibration plate on the robot. Teach a minimum of five calibration poses (e.g., seven to eleven poses). For more accurate results, teach further calibration poses.
 
 <table>
 <tr>
@@ -47,7 +47,7 @@ For the second step of the calibration process, put the calibration plate on the
 ![calibration_cam_to_ground](images/not_on_robot/calibration_cam_to_ground.png)
 
 After running the calibration, an optional verification step is possible to check the accuracy of the calibration.
-Applying it, moves the robot TCP to the bottom left corner of the calibration plate (with an adjustable safety height offset). It is necessary that the calibration plate was not moved between the second calibration step and the verification step. In case of bad results, check the setup and re-run the calibration.
+Applying it moves the robot TCP to the bottom left corner of the calibration plate (with an adjustable safety height offset). It is necessary that the calibration plate was not moved between the second calibration step and the verification step. In case of bad results, check the setup and rerun the calibration.
 
 > **NOTE**
 >

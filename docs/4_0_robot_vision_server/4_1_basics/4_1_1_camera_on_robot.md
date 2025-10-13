@@ -1,8 +1,8 @@
 # 4.1.1 Camera on Robot
 
-If the camera is on the robot, teach minimum five calibration poses. For more accurate results, teach further calibration poses (e.g. seven to eleven poses).
+If the camera is on the robot, teach a minimum of five calibration poses. For more accurate results, teach further calibration poses (e.g., seven to eleven poses).
 
-The first calibration pose is also the detection pose. Make sure to use a suitable pose where the objects are located in a safe way. Make sure to use big variations between the different poses.
+The first calibration pose is also the detection pose. Make sure to use a suitable pose where the objects are located safely. Make sure to use big variations between the different poses.
 
 <table>
 <tr>
@@ -42,7 +42,7 @@ The first calibration pose is also the detection pose. Make sure to use a suitab
 </tr>
 </table>
 
-After calibration, an optional verification step can be performed to check its accuracy. Applying it, moves the robot TCP to the bottom left corner of the calibration plate (with an adjustable safety height offset). It is necessary that the calibration plate was not moved between the calibration and the verification step. In case of bad results, check the setup and re-run the calibration.
+After calibration, an optional verification step can be performed to check its accuracy. Applying it, moves the robot TCP to the bottom left corner of the calibration plate (with an adjustable safety height offset). It is necessary that the calibration plate was not moved between the calibration and the verification step. In case of bad results, check the setup and rerun the calibration.
 
 > **NOTE**
 >
