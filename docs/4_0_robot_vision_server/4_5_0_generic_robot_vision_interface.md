@@ -9,6 +9,41 @@ Select the robot manufacturer `Generic` on the device website (tab `Jobs` -> `Ro
 >
 > The python robot example for the generic string based robot vision API is available in the related [GitHub Repository](https://github.com/wenglor/robot-vision-generic/tree/main/sources)
 
+## Communication sequence
+
+Typical sequence of commands exchanged between the robot controller and the wenglor robot server for a
+calibration followed by a detection:
+
+```mermaid
+sequenceDiagram
+    participant Robot
+    participant Server as wenglor robot server
+    Robot->>Server: calibration:clear;
+    Server-->>Robot: 0
+    Robot->>Server: job:change[calibration.u3p];
+    Server-->>Robot: 0
+    loop per calibration pose
+        Note over Robot,Server: Move to the calibration pose and capture an image
+        Robot->>Server: calibration:add[pose_information];
+        Server-->>Robot: 0
+    end
+    Robot->>Server: calibration:calculate[calibration_case, calibration_target];
+    Server-->>Robot: reprojection error
+    opt camera not on robot
+        Note over Robot,Server: Move to the detection pose and place the<br/>calibration target on the object plane first
+        Robot->>Server: calibration:ground[calibration_target];
+        Server-->>Robot: 0
+    end
+    Robot->>Server: job:change[detection.u3p];
+    Server-->>Robot: 0
+    Robot->>Server: detect[calibration_case, pose_information];
+    Server-->>Robot: object pose
+    Robot->>Server: num_objects:get;
+    Server-->>Robot: number of objects
+    Robot->>Server: pose:get[index];
+    Server-->>Robot: object pose
+```
+
 ## Command syntax
 
 Overview of commands for string- and XML-based robots:

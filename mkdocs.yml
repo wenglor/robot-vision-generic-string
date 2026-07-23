@@ -10,9 +10,13 @@ theme:
   logo: images/wenglor_logo.svg
   features:
     - navigation.indexes
+    - navigation.top
+    - navigation.sections
     - content.code.copy
+    - content.tabs.link
     - toc.integrate
     - search.highlight
+    - search.suggest
 
 nav:
   - index.md
@@ -33,14 +37,20 @@ nav:
 
 markdown_extensions:
   - admonition
+  - attr_list
   - codehilite
   - toc:
       permalink: true
   - pymdownx.arithmatex:
       generic: true
   - pymdownx.details
-  - pymdownx.superfences
-  - pymdownx.tabbed
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
   - pymdownx.highlight
   - pymdownx.snippets
 
@@ -49,11 +59,13 @@ docs_dir: docs
 extra:
   generator: false
 
-copyright: "© 2025 wenglor sensoric group"
+copyright: "© 2026 wenglor sensoric group"
 
 extra_javascript:
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - path: javascripts/mermaid.mjs
+    type: module
 
 extra_css:
+  - css/image_format.css
   - css/wenglor.css
-  - css/images_table.css

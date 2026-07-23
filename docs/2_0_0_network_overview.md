@@ -10,3 +10,10 @@ Connect the network cable from the LAN port of the Machine Vision Device to the 
 > - Use a unique network configuration for the LAN port of the Machine Vision Device within the LAN network. Furthermore, the network configuration of the LAN port must be different to the network configuration of the RTE and CAM ports of the Machine Vision Device.
 
 ![network_overview](images/network_overview.png)
+
+```mermaid
+graph LR
+    Robot["Robot controller"] -- LAN --> Device["Machine Vision Device"]
+    Device -- CAM --> Camera["Camera"]
+    Device -- RTE --> uniVision["uniVision"]
+```

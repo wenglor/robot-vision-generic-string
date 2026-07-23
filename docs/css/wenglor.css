@@ -4,5 +4,47 @@
 }
 
 :root {
-  --md-primary-fg-color:        #00619e;   /* wenglor blue */
+  --md-primary-fg-color:  #00619e;   /* wenglor blue */
+  --md-accent-fg-color:   #00619e;   /* wenglor blue */
+  --md-typeset-a-color:   #00619e;   /* wenglor blue (links) */
+  --md-default-fg-color--light: #74787b; /* Dark Gray (wenglor gray) */
+}
+
+/* Single shared source of truth for all mermaid diagram colors on this site
+   (flowchart nodes AND sequence-diagram actors) -- mkdocs-material injects its
+   own themeCSS into every mermaid diagram referencing these --md-mermaid-*
+   variables, which always wins over a diagram's own %%{init}%% themeVariables,
+   so this is the one place to change the palette. Layout-only options that
+   have no CSS equivalent (e.g. sequence.actorMargin) still live in
+   docs/javascripts/mermaid.mjs.
+   NOTE: must use `:root>*` (specificity 0-1-1), not plain `:root` (0-1-0) --
+   mkdocs-material's own defaults are set on `:root>*` in its compiled main.css
+   and a lower-specificity rule loses regardless of stylesheet load order. */
+:root > * {
+  --md-mermaid-font-family:                 "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --md-mermaid-node-bg-color:               #FFFFFF;
+  --md-mermaid-node-fg-color:               #00619e;
+  --md-mermaid-label-bg-color:              #FFFFFF;
+  --md-mermaid-label-fg-color:              #333333;
+  --md-mermaid-edge-color:                  #74787b;
+  --md-mermaid-sequence-actor-bg-color:     #FFFFFF;
+  --md-mermaid-sequence-actor-border-color: #00619e;
+  --md-mermaid-sequence-actor-fg-color:     #333333;
+  --md-mermaid-sequence-actor-line-color:   #74787b;
+}
+
+/* Sequence-diagram fragment (loop/opt/alt/par) keyword box.
+   Mermaid draws the "loop"/"opt" keyword in a fixed 50x20px polygon at the
+   fragment's top-left corner, which lands directly on the first actor's
+   vertical lifeline -- so the keyword text visually collides with that line.
+   Give the box an opaque white fill and paint it above the lifeline so it
+   cleanly masks the line behind it instead of overlapping it.
+   (Box geometry isn't configurable via mermaid options, hence the CSS.) */
+.mermaid .labelBox {
+  fill: #FFFFFF;
+  stroke: #74787b;
+}
+.mermaid .labelText,
+.mermaid .labelText > tspan {
+  fill: #333333;
 }
