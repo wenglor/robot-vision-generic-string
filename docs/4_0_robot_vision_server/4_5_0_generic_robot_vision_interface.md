@@ -7,7 +7,7 @@ Select the robot manufacturer `Generic` on the device website (tab `Jobs` -> `Ro
 
 > NOTE:
 >
-> The python robot example for the generic string based robot vision API is available in the related [GitHub Repository](https://github.com/wenglor/robot-vision-generic/tree/main/sources)
+> The python robot example for the generic string based robot vision API is available in the related [GitHub Repository](https://github.com/wenglor/robot-vision-generic-string/tree/main/sources)
 
 ## Communication sequence
 
@@ -42,7 +42,15 @@ sequenceDiagram
     Server-->>Robot: number of objects
     Robot->>Server: pose:get[index];
     Server-->>Robot: object pose
+    opt update a reference frame from the calibration target
+        Robot->>Server: job:change[find_target.u3p];
+        Server-->>Robot: 0
+        Robot->>Server: target:pose[calibration_case, calibration_target, pose_information];
+        Server-->>Robot: target_pose
+    end
 ```
+
+See [4.6 Target Pose and Camera-to-Target Calibration](4_6_0_target_pose_and_camera_to_target.md) for `target:pose` and `calibration:target` in detail.
 
 ## Command syntax
 
@@ -63,6 +71,8 @@ Overview of commands for string- and XML-based robots:
 | pose:get[*index*]; | Requests the object pose with the given index from the robot server buffer. Detect must be called first to fill the buffer. | Index starts at 0 <br> Pose information in [x, y, z, rx, ry, rz] <br> x, y, z in meter <br> rx, ry, rz as rotation vector in radiant <br><br> Object pose (array of floating point numbers) |
 | shape:get[*index*]; | Requests the shape model with the given index from the robot server buffer. Detect must be called first to fill the buffer. | Index starts at 0 <br><br> Number |
 | value:get[*index*]; | Requests the additional value with the given index from the robot server buffer. Detect must be called first to fill the buffer. | Index starts at 0 <br><br> String |
+| target:pose[*calibration_case*, *calibration_target*, *pose_information*]; | Triggers the [uniVision](https://www.wenglor.com/en/Machine-Vision/Machine-Vision-Software/Image-Processing-Software-uniVision-3/c/cxmCID222459) job, sends the `Device Robot Vision` data to the robot vision server. There the 3D pose for the calibration target is calculated based on the current calibration data and returned to the robot. It also fills the additional value internally, which can be accessed via `value:get[0]`. See [4.6 Target Pose and Camera-to-Target Calibration](4_6_0_target_pose_and_camera_to_target.md). | Calibration case options: <ul><li>camera_on_robot</li><li>camera_not_on_robot</li></ul> Calibration target options: <ul> <li>[ZVZJ001](https://www.wenglor.com/product/ZVZJ001)</li> <li>[ZVZJ002](https://www.wenglor.com/product/ZVZJ002)</li> <li>[ZVZJ003](https://www.wenglor.com/product/ZVZJ003)</li> <li>[ZVZJ004](https://www.wenglor.com/product/ZVZJ004)</li></ul> Pose information in [x, y, z, rx, ry, rz] <br> x, y, z in meter <br> rx, ry, rz as rotation vector in radiant <br><br> target_pose (array of floating point numbers) |
+| calibration:target[*calibration_case*, *calibration_target*]; | Calibrates the camera to target relation without creating a new calibration file. The new calibration data is cached internally in the camera only. See [4.6 Target Pose and Camera-to-Target Calibration](4_6_0_target_pose_and_camera_to_target.md). | Calibration case options: <ul><li>camera_on_robot</li><li>camera_not_on_robot</li></ul> Calibration target options: <ul> <li>[ZVZJ001](https://www.wenglor.com/product/ZVZJ001)</li> <li>[ZVZJ002](https://www.wenglor.com/product/ZVZJ002)</li> <li>[ZVZJ003](https://www.wenglor.com/product/ZVZJ003)</li> <li>[ZVZJ004](https://www.wenglor.com/product/ZVZJ004)</li></ul> |
 
 ## Return values
 
@@ -74,13 +84,15 @@ Overview of commands for string- and XML-based robots:
 | calibration:add[pose_information]; | 0 | Error code as negative number |
 | calibration:calculate[*calibration_case*,calibration_target]; | reprojection error positive floating point | Error code as negative number |
 | calibration:ground[calibration_target]; | 0 | Error code as negative number |
-| state[calibration_case]; | Two binary numbers <ul><li>First bit: Camera error</li> <li>Second bit: Calibration state</li></ul> | Two binary numbers <ul><li>First bit: Camera error</li> <li>Second bit: Calibration state</li></ul> |
+| state[calibration_case]; | Two binary numbers <ul><li>First bit: Camera error</li> <li>Second bit: Calibration state</li></ul> | Error code as negative number |
 | detect[calibration_case,pose_information]; | Object pose (array of floating point numbers) | Error code as negative number |
 | num_objects:get; | Number of objects available in robot server (positive number) | Error code as negative number |
 | validate[calibration_case,detection_pose]; | Calibration target pose (array of floating point numbers) | Error code as negative number |
 | pose:get[index]; | Object pose to the object with the corresponding index (starting with 0) (Array of floating point numbers) | Error code as negative number |
 | shape:get[index]; | Shape model linked in `Device Robot Vision` to the object with the corresponding index (starting with 0) (number) | Error code as negative number |
 | value:get[index]; | Additional value linked in `Device Robot Vision` to the object with the corresponding index (starting with 0)(string) | Error code as negative number |
+| target:pose[calibration_case,calibration_target,pose_information]; | target_pose (array of floating point numbers) | Error code as negative number |
+| calibration:target[calibration_case,calibration_target]; | 0 | Error code as negative number |
 
 ## Error codes
 
@@ -132,7 +144,9 @@ Overview of commands for string- and XML-based robots:
 | pose:get[0]; | (0.048705,-0.094640,-0.110581,0.102101,-3.131079,0.003192) |
 | shape:get[1]; | 0 |
 | value:get[4]; | 0.903153 |
+| target:pose[camera_on_robot,zvzj001,[0.047871,-0.856617,0.830479,0.874365,3.004280,-0.045222]]; | (0.318205,-0.164630,-0.100281,0.090210,-1.131079,1.003192) |
+| calibration:target[camera_on_robot,zvzj001]; | 0 |
 
 > NOTE
 >
-> An example robot program structure written in Python that shows how to use the generic robot  vision API is available in the related [GitHub Repository](https://github.com/wenglor/robot-vision-generic/tree/main/sources)
+> An example robot program structure written in Python that shows how to use the generic robot  vision API is available in the related [GitHub Repository](https://github.com/wenglor/robot-vision-generic-string/tree/main/sources)
