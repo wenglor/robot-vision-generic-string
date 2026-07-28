@@ -1,18 +1,24 @@
-# 4.4 Detection Job in uniVision
+# 4.5 Detection Job in uniVision
 
 Open the device website of the Machine Vision Device, access the tab Jobs, and open the current job in the [uniVision 3 software](https://www.wenglor.com/en/Machine-Vision/Machine-Vision-Software/Image-Processing-Software-uniVision-3/c/cxmCID222459).
 
-![Level 2 processing instance](images/level2_jobs.png)
+<figure class="align-left">
+<img src="../images/level2_jobs.png" alt="level2_jobs" class="uniform-width-600"/>
+</figure>
 
 Load the template `Pick objects with robot` for easy setup.
 
-![Level 2 processing instance](images/uniVision/acquisition_control_detect_job.png)
+<figure class="align-left">
+<img src="../images/uniVision/acquisition_control_detect_job.png" alt="acquisition_control_detect_job" class="uniform-width-1000"/>
+</figure>
 
 Adjust the focus and brightness of the camera to get a sharp and well illuminated image. By default, Trigger Mode is set to On and Trigger Source to Software (mandatory for the calibration procedure). Adjust `Trigger Mode` to `Off` and switch to `Run Mode` in order to adjust the camera image. Afterward, change the setting back to Software trigger. If working with color images, make sure that `Create BGRA Image` is active at the input camera (only relevant if working with URCap).
 
 Teach your object at `Module Image Locator` (or `Module Image Pattern Match`). For details, check the operating instructions of the [software wenglor uniVision 3 (DNNF023)](https://www.wenglor.com/en/Machine-Vision/Machine-Vision-Software/Image-Processing-Software-uniVision-3/wenglor-uniVision-3-Software/p/DNNF023).
 
-![uniVision - Locator module](images/uniVision/locator.png)
+<figure class="align-left">
+<img src="../images/uniVision/locator.png" alt="locator" class="uniform-width-1000"/>
+</figure>
 
 In the template, `Device Robot Vision` is already pre-configured to send the results to the robot server.
 

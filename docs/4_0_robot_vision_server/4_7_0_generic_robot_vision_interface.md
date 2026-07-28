@@ -1,9 +1,9 @@
-# 4.5 Generic Robot Vision Interface
+# 4.7 Generic Robot Vision Interface
 
 The generic robot vision API describes the communication between the robot controller and the wenglor robot server on the Machine Vision Device.
 
 ## Usage
-Select the robot manufacturer `Generic` on the device website (tab `Jobs` -> `Robot Server`, see section [4.2 Settings on Device Website](4_2_0_settings_on_device_website.md)) in order to use the generic string based robot vision API.
+Select the robot manufacturer `Generic` on the device website (tab `Jobs` -> `Robot Server`, see section [4.3 Settings on Device Website](4_3_0_settings_on_device_website.md)) in order to use the generic string based robot vision API.
 
 > NOTE:
 >

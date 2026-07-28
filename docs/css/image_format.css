@@ -1,19 +1,38 @@
-img.big {
-  width: 75%;
+img.uniform-width-200 {
+  width: 200px;
   height: auto;
 }
 
-img.medium {
-  width: 50%;
+img.uniform-width-400 {
+  width: 400px;
   height: auto;
 }
 
-img.small {
-  width: 25%;
+img.uniform-width-600 {
+  width: 600px;
   height: auto;
 }
 
-img.uniform-width {
-  width: 300px;
+img.uniform-width-800 {
+  width: 800px;
   height: auto;
+}
+
+img.uniform-width-1000 {
+  width: 1000px;
+  height: auto;
+}
+
+.md-typeset table:not([class]) td {
+  text-align: left;
+  vertical-align: middle;
+}
+
+.md-typeset table:not([class]) td figure {
+  margin: 0;
+}
+
+.md-typeset figure.align-left {
+  margin: 1em 0;
+  text-align: left;
 }
