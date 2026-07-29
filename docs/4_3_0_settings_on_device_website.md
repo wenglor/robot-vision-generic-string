@@ -3,7 +3,7 @@
 Open the device website of the Machine Vision Device and select the tab `Jobs` to see the robot server settings for each processing instance.
 
 <figure class="align-left">
-<img src="../images/level2_landing.png" alt="level2_landing" class="uniform-width-1000"/>
+<img src="images/level2_landing.png" alt="level2_landing" class="uniform-width-1000"/>
 </figure>
 
 By default, the robot server is active on the [Smart Camera B60](https://www.wenglor.com/en/Machine-Vision/Smart-Cameras-and-Vision-Sensors/Smart-Camera-B60/c/cxmCID221375) and inactive on the [Machine Vision Controller MVC](https://www.wenglor.com/en/Machine-Vision/Machine-Vision-Controllers/c/cxmCID221381). Activate the robot server, if needed. Additional parameters appear if activated:

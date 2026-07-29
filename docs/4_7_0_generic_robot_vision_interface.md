@@ -5,9 +5,9 @@ The generic robot vision API describes the communication between the robot contr
 ## Usage
 Select the robot manufacturer `Generic` on the device website (tab `Jobs` -> `Robot Server`, see section [4.3 Settings on Device Website](4_3_0_settings_on_device_website.md)) in order to use the generic string based robot vision API.
 
-> NOTE:
->
-> The python robot example for the generic string based robot vision API is available in the related [GitHub Repository](https://github.com/wenglor/robot-vision-generic-string/tree/main/sources)
+!!! note
+
+    The python robot example for the generic string based robot vision API is available in the related [GitHub Repository](https://github.com/wenglor/robot-vision-generic-string/tree/main/sources)
 
 ## Communication sequence
 
@@ -147,6 +147,6 @@ Overview of commands for string- and XML-based robots:
 | target:pose[camera_on_robot,zvzj001,[0.047871,-0.856617,0.830479,0.874365,3.004280,-0.045222]]; | (0.318205,-0.164630,-0.100281,0.090210,-1.131079,1.003192) |
 | calibration:target[camera_on_robot,zvzj001]; | 0 |
 
-> NOTE
->
-> An example robot program structure written in Python that shows how to use the generic robot  vision API is available in the related [GitHub Repository](https://github.com/wenglor/robot-vision-generic-string/tree/main/sources)
+!!! note
+
+    An example robot program structure written in Python that shows how to use the generic robot  vision API is available in the related [GitHub Repository](https://github.com/wenglor/robot-vision-generic-string/tree/main/sources)

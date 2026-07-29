@@ -1,50 +1,446 @@
-.md-header__button.md-logo img {
-  height: 50px;
-  width: auto;
-}
+/* ==========================================================================
+   wenglor corporate design for Zensical (Material-compatible theme)
+   --------------------------------------------------------------------------
+   Single source of truth for brand styling across all robot-vision-* docs
+   sites. Kept byte-identical in every repo -- edit it in context/style/css/
+   and re-copy, never edit a repo copy directly.
 
+   Colors are taken from the wenglor Corporate Design "Primary Colors" page:
+     wenglor blue     #00619e
+     50% wenglor blue #7d9bc4
+     Deep Dark Gray   #333333
+     Dark Gray        #74787b   (a.k.a. "wenglor gray")
+     Light Gray       #bdbfc0
+     Lightest Gray    #eaeaea
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Brand palette tokens
+   --------------------------------------------------------------------------
+   Zensical/Material only ship named palettes (indigo, blue, ...). Selecting
+   `primary = "custom"` / `accent = "custom"` in zensical.toml deliberately
+   leaves those hooks undefined so the brand can own them -- which is what the
+   two blocks below do. Without these, a `custom` palette renders unstyled.
+   -------------------------------------------------------------------------- */
 :root {
-  --md-primary-fg-color:  #00619e;   /* wenglor blue */
-  --md-accent-fg-color:   #00619e;   /* wenglor blue */
-  --md-typeset-a-color:   #00619e;   /* wenglor blue (links) */
-  --md-default-fg-color--light: #74787b; /* Dark Gray (wenglor gray) */
+  --wg-blue:          #00619e;
+  --wg-blue-50:       #7d9bc4;
+  --wg-gray-deepdark: #333333;
+  --wg-gray-dark:     #74787b;
+  --wg-gray-light:    #bdbfc0;
+  --wg-gray-lightest: #eaeaea;
+
+  /* Lightened brand blue for dark backgrounds. #00619e on the slate scheme's
+     near-black background only reaches ~2.6:1 contrast, below the 4.5:1 AA
+     threshold for body text and link copy. This tint keeps the brand hue
+     (same 205deg family) while clearing AA. */
+  --wg-blue-on-dark:  #6fb3e0;
 }
 
-/* Single shared source of truth for all mermaid diagram colors on this site
-   (flowchart nodes AND sequence-diagram actors) -- mkdocs-material injects its
-   own themeCSS into every mermaid diagram referencing these --md-mermaid-*
-   variables, which always wins over a diagram's own %%{init}%% themeVariables,
-   so this is the one place to change the palette. Layout-only options that
-   have no CSS equivalent (e.g. sequence.actorMargin) still live in
-   docs/javascripts/mermaid.mjs.
-   NOTE: must use `:root>*` (specificity 0-1-1), not plain `:root` (0-1-0) --
-   mkdocs-material's own defaults are set on `:root>*` in its compiled main.css
-   and a lower-specificity rule loses regardless of stylesheet load order. */
-:root > * {
-  --md-mermaid-font-family:                 "Helvetica Neue", Helvetica, Arial, sans-serif;
-  --md-mermaid-node-bg-color:               #FFFFFF;
-  --md-mermaid-node-fg-color:               #00619e;
-  --md-mermaid-label-bg-color:              #FFFFFF;
-  --md-mermaid-label-fg-color:              #333333;
-  --md-mermaid-edge-color:                  #74787b;
-  --md-mermaid-sequence-actor-bg-color:     #FFFFFF;
-  --md-mermaid-sequence-actor-border-color: #00619e;
-  --md-mermaid-sequence-actor-fg-color:     #333333;
-  --md-mermaid-sequence-actor-line-color:   #74787b;
+[data-md-color-primary=custom] {
+  --md-primary-fg-color:        var(--wg-blue);
+  --md-primary-fg-color--light: var(--wg-blue-50);
+  --md-primary-fg-color--dark:  #004b7a;
+  --md-primary-bg-color:        #ffffff;
+  --md-primary-bg-color--light: rgba(255, 255, 255, 0.7);
 }
 
-/* Sequence-diagram fragment (loop/opt/alt/par) keyword box.
-   Mermaid draws the "loop"/"opt" keyword in a fixed 50x20px polygon at the
-   fragment's top-left corner, which lands directly on the first actor's
-   vertical lifeline -- so the keyword text visually collides with that line.
-   Give the box an opaque white fill and paint it above the lifeline so it
-   cleanly masks the line behind it instead of overlapping it.
-   (Box geometry isn't configurable via mermaid options, hence the CSS.) */
-.mermaid .labelBox {
-  fill: #FFFFFF;
-  stroke: #74787b;
+[data-md-color-accent=custom] {
+  --md-accent-fg-color:             var(--wg-blue);
+  --md-accent-fg-color--transparent: rgba(0, 97, 158, 0.1);
+  --md-accent-bg-color:             #ffffff;
+  --md-accent-bg-color--light:      rgba(255, 255, 255, 0.7);
 }
-.mermaid .labelText,
-.mermaid .labelText > tspan {
-  fill: #333333;
+
+[data-md-color-scheme=default] {
+  --md-typeset-a-color:         var(--wg-blue);
+  --md-default-fg-color--light: var(--wg-gray-dark);
+  --md-footer-bg-color:         var(--wg-gray-deepdark);
+  --md-footer-bg-color--dark:   #262626;
+}
+
+/* Dark (slate) scheme ----------------------------------------------------- */
+[data-md-color-scheme=slate] {
+  /* Hue 205 aligns the generated slate greys with the brand blue instead of
+     Material's default purple-leaning 232. */
+  --md-hue: 205;
+
+  --md-typeset-a-color: var(--wg-blue-on-dark);
+}
+
+/* On dark backgrounds the header/accent must use the lightened tint too,
+   otherwise brand-blue chrome sits too close to the page background. */
+[data-md-color-scheme=slate][data-md-color-primary=custom] {
+  --md-primary-fg-color:        #0a4d7a;
+  --md-primary-fg-color--light: var(--wg-blue-on-dark);
+  --md-primary-fg-color--dark:  #073d61;
+}
+
+[data-md-color-scheme=slate][data-md-color-accent=custom] {
+  --md-accent-fg-color:              var(--wg-blue-on-dark);
+  --md-accent-fg-color--transparent: rgba(111, 179, 224, 0.1);
+}
+
+/* --------------------------------------------------------------------------
+   Header
+   --------------------------------------------------------------------------
+   The "modern" theme variant styles the header as a translucent blurred bar
+   that adopts the page background (--md-default-bg-color--light), rather than
+   the brand color the "classic" variant uses. That drops the wenglor blue bar
+   entirely and would leave the white knockout logo invisible on white.
+
+   Restore the solid brand bar: it is the strongest corporate-design cue we
+   have, and the CD explicitly pairs the logo with a blue field. Everything
+   else about the modern variant (type scale, spacing, icons) is kept.
+   -------------------------------------------------------------------------- */
+.md-header {
+  background-color: var(--md-primary-fg-color);
+  color: var(--md-primary-bg-color);
+  /* The variant's blur assumes a see-through bar; with a solid fill it only
+     costs paint performance. */
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.1);
+}
+
+/* Header children inherit `color`, but a few are pinned to the body text color
+   by the variant and need pulling back onto the blue bar. */
+.md-header__title,
+.md-header__topic,
+.md-header__button,
+.md-header__option {
+  color: currentcolor;
+}
+
+/* Search field: on the blue bar the variant's light-grey field disappears, so
+   give it a translucent white treatment that reads on blue in both schemes. */
+.md-search__form {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: var(--md-primary-bg-color);
+}
+
+.md-search__form:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.md-search__input {
+  color: var(--md-primary-bg-color);
+}
+
+.md-search__input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.md-search__icon,
+.md-search__options .md-search__icon {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* The search overlay/suggestion panel stays on the page background, so its
+   text must go back to the default foreground color. */
+.md-search__output,
+.md-search__scrollwrap {
+  color: var(--md-default-fg-color);
+}
+
+/* Repository link in the header. */
+.md-source {
+  color: currentcolor;
+}
+
+/* --------------------------------------------------------------------------
+   Logo
+   --------------------------------------------------------------------------
+   images/wenglor_logo.svg is the white knockout version (all paths are
+   fill="white"), so it must sit on the brand-blue header bar, not on white --
+   this is the sanctioned negative treatment for a colored background. Do not
+   add a white backplate here: it renders the logo invisible.
+
+   CD requires a protected area of at least three units around the logo, so
+   keep the margin generous relative to the mark's height.
+   -------------------------------------------------------------------------- */
+.md-header__button.md-logo {
+  padding: 0;
+  margin-inline: 0.2rem 0.6rem;
+}
+
+.md-header__button.md-logo img,
+.md-header__button.md-logo svg {
+  height: 1.5rem;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* --------------------------------------------------------------------------
+   Typography
+   --------------------------------------------------------------------------
+   CD corporate typeface is Nimbus Sans Global, with Arial as the sanctioned
+   substitute where it is unavailable. Inter (loaded via theme.font) is the
+   closest freely-licensable grotesque; Arial/Helvetica follow in the stack so
+   an offline or blocked-CDN render still lands on a CD-approved face.
+   -------------------------------------------------------------------------- */
+:root {
+  --md-text-font-family: "Inter", Arial, Helvetica, sans-serif;
+}
+
+/* CD website spec: Headline 1 = Bold, Headline 2 = Light, body = 16px/25px. */
+.md-typeset h1 {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--md-default-fg-color);
+}
+
+[data-md-color-scheme=default] .md-typeset h1 {
+  color: var(--wg-gray-deepdark);
+}
+
+.md-typeset h2 {
+  font-weight: 300;
+  letter-spacing: -0.01em;
+}
+
+.md-typeset h3,
+.md-typeset h4 {
+  font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   Tables
+   --------------------------------------------------------------------------
+   CD brochure table spec: header row in 50% wenglor blue with white text,
+   0.5pt Dark Gray contours, data rows alternating white / Lightest Gray with
+   the first data row always white, vertically centered cells.
+   -------------------------------------------------------------------------- */
+.md-typeset table:not([class]) {
+  border: 1px solid var(--wg-gray-light);
+  border-radius: 0.1rem;
+}
+
+.md-typeset table:not([class]) th {
+  background-color: var(--wg-blue-50);
+  color: #ffffff;
+  font-weight: 700;
+  vertical-align: middle;
+}
+
+[data-md-color-scheme=slate] .md-typeset table:not([class]) th {
+  background-color: #2c5a80;
+}
+
+.md-typeset table:not([class]) td {
+  vertical-align: middle;
+  border-top: 1px solid var(--wg-gray-lightest);
+}
+
+/* First data row always white, then alternate. nth-child(even) targets the
+   2nd, 4th, ... body row -- i.e. leaves row 1 on the default background. */
+[data-md-color-scheme=default] .md-typeset table:not([class]) tbody tr:nth-child(even) {
+  background-color: var(--wg-gray-lightest);
+}
+
+[data-md-color-scheme=slate] .md-typeset table:not([class]) tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.04);
+}
+
+/* --------------------------------------------------------------------------
+   Admonitions / code
+   -------------------------------------------------------------------------- */
+.md-typeset .admonition,
+.md-typeset details {
+  border-radius: 0.2rem;
+  border-left-width: 0.2rem;
+  box-shadow: none;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-left: 0.2rem solid var(--md-default-fg-color--lighter);
+  font-size: 0.75rem;
+}
+
+/* `note` and `info` both carry neutral, informational weight, so both get the
+   brand blue. Warning/danger use the design department's warm palette further
+   down -- a hazard callout that reads as brand-colored stops looking like one.
+
+   Consistent with the modern variant (and with warning/danger below), the tint
+   goes on the whole block rather than the title bar. */
+.md-typeset .admonition.note,
+.md-typeset details.note,
+.md-typeset .admonition.info,
+.md-typeset details.info {
+  background-color: rgba(0, 97, 158, 0.1);
+  border-left-color: var(--wg-blue);
+}
+
+.md-typeset .note > .admonition-title::before,
+.md-typeset .note > summary::before,
+.md-typeset .info > .admonition-title::before,
+.md-typeset .info > summary::before {
+  background-color: var(--wg-blue);
+}
+
+/* Dark scheme: #00619e on the near-black page is too dark to read as an accent
+   -- reuse the dark-safe brand tint, same as the mermaid DARK palette. */
+[data-md-color-scheme="slate"] .md-typeset .admonition.note,
+[data-md-color-scheme="slate"] .md-typeset details.note,
+[data-md-color-scheme="slate"] .md-typeset .admonition.info,
+[data-md-color-scheme="slate"] .md-typeset details.info {
+  background-color: rgba(111, 179, 224, 0.14);
+  border-left-color: var(--wg-blue-on-dark);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .note > .admonition-title::before,
+[data-md-color-scheme="slate"] .md-typeset .note > summary::before,
+[data-md-color-scheme="slate"] .md-typeset .info > .admonition-title::before,
+[data-md-color-scheme="slate"] .md-typeset .info > summary::before {
+  background-color: var(--wg-blue-on-dark);
+}
+
+/* --- WARNING / DANGER ----------------------------------------------------
+   Official colors supplied by the design department.
+
+     warning  background #fff8cc  icon #ff9800  text #402600
+     danger   background #fdeded  icon #9f122d  text #5f2120   (spec'd "Error")
+
+   `danger` is the Material/Zensical class name for the Error style -- use
+   `!!! danger` in Markdown to get it.
+
+   NOTE ON THE MODERN VARIANT: unlike the classic theme (title bar tinted,
+   body plain, 0.2rem left border), the modern variant tints the WHOLE block
+   and leaves the title bar transparent with no left border. So the supplied
+   background goes on the block itself and the supplied text color applies to
+   all of the callout's copy, not just the heading. The icon color is the only
+   thing that distinguishes the two types at a glance, so it stays saturated.
+   ----------------------------------------------------------------------- */
+:root {
+  --wg-warning-bg: #fff8cc;
+  --wg-warning-icon: #ff9800;
+  --wg-warning-text: #402600;
+  --wg-danger-bg: #fdeded;
+  --wg-danger-icon: #9f122d;
+  --wg-danger-text: #5f2120;
+}
+
+.md-typeset .admonition.warning,
+.md-typeset details.warning {
+  background-color: var(--wg-warning-bg);
+  color: var(--wg-warning-text);
+}
+
+.md-typeset .warning > .admonition-title,
+.md-typeset .warning > summary {
+  color: var(--wg-warning-text);
+}
+
+.md-typeset .warning > .admonition-title::before,
+.md-typeset .warning > summary::before {
+  background-color: var(--wg-warning-icon);
+}
+
+/* ::after is the collapse chevron on `??? warning`; the theme colors it with
+   its own stock hue, so it needs overriding too or it won't match the icon. */
+.md-typeset .warning > summary::after {
+  color: var(--wg-warning-icon);
+}
+
+.md-typeset .admonition.danger,
+.md-typeset details.danger {
+  background-color: var(--wg-danger-bg);
+  color: var(--wg-danger-text);
+}
+
+.md-typeset .danger > .admonition-title,
+.md-typeset .danger > summary {
+  color: var(--wg-danger-text);
+}
+
+.md-typeset .danger > .admonition-title::before,
+.md-typeset .danger > summary::before {
+  background-color: var(--wg-danger-icon);
+}
+
+.md-typeset .danger > summary::after {
+  color: var(--wg-danger-icon);
+}
+
+/* Links inside a warning/danger callout would otherwise stay brand blue, which
+   clashes with the warm palette and (on #fff8cc) is the weakest contrast pair
+   in the block. Underline them and inherit the callout's text color so they
+   stay identifiable as links without introducing a third hue. */
+.md-typeset .warning a,
+.md-typeset .danger a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+/* Dark scheme. The supplied palette is built for a light page: #fff8cc /
+   #fdeded as a full-block background would blow out the slate scheme, and
+   #5f2120 text on it drops to 1.3:1 -- unreadable. So in dark mode keep the
+   icon hue (it carries the meaning) and render the block as a low-alpha wash
+   of it, letting text fall back to the theme's default foreground. #9f122d is
+   itself too dark to read as an accent on near-black, so it lightens to
+   #e4707f. Mirrors how note/info handle the same problem. */
+[data-md-color-scheme="slate"] .md-typeset .admonition.warning,
+[data-md-color-scheme="slate"] .md-typeset details.warning {
+  background-color: rgba(255, 152, 0, 0.14);
+  color: var(--md-default-fg-color);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .warning > .admonition-title,
+[data-md-color-scheme="slate"] .md-typeset .warning > summary {
+  color: var(--md-default-fg-color);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .admonition.danger,
+[data-md-color-scheme="slate"] .md-typeset details.danger {
+  background-color: rgba(228, 112, 127, 0.14);
+  color: var(--md-default-fg-color);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .danger > .admonition-title,
+[data-md-color-scheme="slate"] .md-typeset .danger > summary {
+  color: var(--md-default-fg-color);
+}
+
+[data-md-color-scheme="slate"] .md-typeset .danger > .admonition-title::before,
+[data-md-color-scheme="slate"] .md-typeset .danger > summary::before {
+  background-color: #e4707f;
+}
+
+[data-md-color-scheme="slate"] .md-typeset .danger > summary::after {
+  color: #e4707f;
+}
+
+.md-typeset code {
+  border-radius: 0.1rem;
+}
+
+/* --------------------------------------------------------------------------
+   Mermaid diagrams
+   --------------------------------------------------------------------------
+   Diagram COLORS are not set here -- they live in javascripts/mermaid.mjs as
+   mermaid `themeVariables`.
+
+   Why: mermaid emits a <style> block per diagram scoped by a generated id,
+   e.g. `#mermaid-1785304363602 .actor-line { stroke: grey; }`. That is an ID
+   selector (specificity 1-1-0) and beats any class rule we could write here
+   (0-2-0) regardless of stylesheet order. Setting the --md-mermaid-* custom
+   properties doesn't help either: the rules that consume them ship inside the
+   theme's JS bundle and are injected only by its built-in mermaid
+   integration, which this site bypasses in order to set layout options the
+   theme doesn't expose (sequence.actorMargin, reduced label font sizes).
+
+   So: colors -> mermaid.mjs themeVariables. Layout/overflow -> here.
+   -------------------------------------------------------------------------- */
+
+/* Center diagrams and let wide ones scroll rather than overflow the page. */
+.md-typeset .mermaid {
+  overflow-x: auto;
+  text-align: center;
+  margin: 1.2em 0;
+}
+
+/* mermaid sets an inline max-width from useMaxWidth; make sure the SVG still
+   scales down inside narrow viewports instead of being clipped. */
+.md-typeset .mermaid svg {
+  max-width: 100%;
+  height: auto;
 }

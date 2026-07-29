@@ -14,12 +14,12 @@ Calibrate the robot and camera via several calibration poses where the camera lo
 <img src="images/table_and_plate.png" alt="table_and_plate" class="uniform-width-200"/>
 </figure>
 
-> **NOTE**
->
-> - In case of printing your calibration plate, make sure to print the PDFs at actual size and on a stiff and flat material.
-> - Typically, the reprojection error for the ZVZJ calibration plate is five times smaller compared to the printed version.
-> - For direct light applications, non-transparent calibration plates made of carbon fiber are available. For backlight applications, transparent calibration plates with the material glass are available.
-> - The calibration plate should cover at least half of the image and should be visible completely by the camera if possible for most accurate results.
+!!! note
+
+    - In case of printing your calibration plate, make sure to print the PDFs at actual size and on a stiff and flat material.
+    - Typically, the reprojection error for the ZVZJ calibration plate is five times smaller compared to the printed version.
+    - For direct light applications, non-transparent calibration plates made of carbon fiber are available. For backlight applications, transparent calibration plates with the material glass are available.
+    - The calibration plate should cover at least half of the image and should be visible completely by the camera if possible for most accurate results.
 
 Consider the following points when setting the calibration poses:
 

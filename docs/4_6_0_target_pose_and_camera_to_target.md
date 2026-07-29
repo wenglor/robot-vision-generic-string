@@ -7,7 +7,7 @@ In case of camera and robot mounted on a mobile platform, load the template `Cor
 Adjust the focus and brightness of the camera to get a sharp and well illuminated image. By default, Trigger Mode is set to `On` and Trigger Source to `Software`. Adjust `Trigger Mode` to `Off` and switch to `Run Mode` in order to adjust the camera image. Afterward, change the setting back to Software trigger. If working with color images, make sure that `Create BGRA Image` is active at the input camera (only relevant if working with URCap).
 
 <figure class="align-left">
-<img src="../images/univision/correct_position_via_calibration_plate.png" alt="level2_landing" class="uniform-width-1000"/>
+<img src="images/univision/correct_position_via_calibration_plate.png" alt="level2_landing" class="uniform-width-1000"/>
 </figure>
 
 Make sure that `Device Robot Vision` is part of the uniVision job. Optionally, link any job result as `Additional Value` in `Device Robot Vision` (Result List → 0) to identify the current position (e.g. via linking a code result). Make sure that `Shape Model` of result `0` in the Result List is set to a valid value (e.g. `0`) and that `Result True Count` is linked with the corresponding value (e.g. `Result True Count` of the code module).
