@@ -1,0 +1,117 @@
+[project]
+site_name = "Robot Vision"
+site_description = "General template for a robot vision application using the wenglor robot vision interface."
+site_url = "https://wenglor.github.io/robot-vision-generic-string/"
+repo_url = "https://github.com/wenglor/robot-vision-generic-string"
+repo_name = "robot-vision-generic-string"
+edit_uri = "edit/main/docs/"
+copyright = "© 2026 wenglor sensoric group"
+
+extra_css = [
+  "css/wenglor.css",
+  "css/image_format.css",
+]
+
+[project.theme]
+name = "material"
+variant = "modern"
+logo = "images/wenglor_logo.svg"
+favicon = "images/favicon.ico"
+language = "en"
+features = [
+  "navigation.instant",
+  "navigation.instant.progress",
+  "navigation.tracking",
+  "navigation.indexes",
+  "navigation.top",
+  "navigation.footer",
+  "navigation.path",
+  "toc.follow",
+  "content.code.copy",
+  "content.tabs.link",
+  "content.tooltips",
+  "content.action.edit",
+  "search.highlight",
+  "search.suggest",
+  "search.share",
+]
+
+[project.theme.font]
+text = "Inter"
+code = "JetBrains Mono"
+
+[project.theme.icon]
+repo = "fontawesome/brands/github"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+primary = "custom"
+accent = "custom"
+[project.theme.palette.toggle]
+icon = "material/brightness-7"
+name = "Switch to dark mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+primary = "custom"
+accent = "custom"
+[project.theme.palette.toggle]
+icon = "material/brightness-4"
+name = "Switch to light mode"
+
+nav = [
+  "index.md",
+  "1_0_0_intended_purpose.md",
+  "2_0_0_network_overview.md",
+  "3_0_0_robot_vision_setup.md",
+  "4_0_0_robot_vision_server.md",
+  "4_1_0_camera_on_robot.md",
+  "4_2_0_camera_not_on_robot.md",
+  "4_3_0_settings_on_device_website.md",
+  "4_4_0_calibration_job_in_univision.md",
+  "4_5_0_detection_job_in_univision.md",
+  "4_6_0_target_pose_and_camera_to_target.md",
+  "4_7_0_generic_robot_vision_interface.md",
+  "5_0_0_change_index_of_operating_instructions.md",
+]
+
+[project.markdown_extensions]
+admonition = {}
+"pymdownx.details" = {}
+
+attr_list = {}
+md_in_html = {}
+
+tables = {}
+def_list = {}
+abbr = {}
+
+"pymdownx.highlight" = { anchor_linenums = true, line_spans = "__span", pygments_lang_class = true }
+"pymdownx.inlinehilite" = {}
+"pymdownx.snippets" = {}
+"pymdownx.superfences" = { custom_fences = [{ name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_div_format" }] }
+
+"pymdownx.blocks.html" = {}
+"pymdownx.tabbed" = { alternate_style = true }
+"pymdownx.keys" = {}
+"pymdownx.tasklist" = { custom_checkbox = true }
+"pymdownx.tilde" = {}
+"pymdownx.caret" = {}
+"pymdownx.mark" = {}
+"pymdownx.smartsymbols" = {}
+"pymdownx.betterem" = {}
+
+toc = { permalink = true, permalink_title = "Link to this section" }
+
+[[project.extra_javascript]]
+path = "javascripts/mermaid.mjs"
+type = "module"
+
+[project.validation]
+invalid_links = true
+invalid_link_anchors = true
+
+[project.extra]
+generator = false

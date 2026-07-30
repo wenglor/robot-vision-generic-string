@@ -1,0 +1,84 @@
+img.uniform-width-200 {
+  width: 200px;
+  max-width: 100%;
+  height: auto;
+}
+
+img.uniform-width-400 {
+  width: 400px;
+  max-width: 100%;
+  height: auto;
+}
+
+img.uniform-width-600 {
+  width: 600px;
+  max-width: 100%;
+  height: auto;
+}
+
+img.uniform-width-800 {
+  width: 800px;
+  max-width: 100%;
+  height: auto;
+}
+
+img.uniform-width-1000 {
+  width: 1000px;
+  max-width: 100%;
+  height: auto;
+}
+
+.md-typeset figure img,
+.md-typeset p > img {
+  border-radius: 0.1rem;
+}
+
+.md-typeset table:not([class]) td {
+  text-align: left;
+  vertical-align: middle;
+}
+
+.md-typeset table:not([class]) td figure {
+  margin: 0;
+}
+
+.md-typeset div.col-widths table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+.md-typeset div.col-widths th:nth-child(1),
+.md-typeset div.col-widths td:nth-child(1) {
+  width: var(--w1);
+}
+
+.md-typeset div.col-widths th:nth-child(2),
+.md-typeset div.col-widths td:nth-child(2) {
+  width: var(--w2);
+}
+
+.md-typeset div.col-widths th:nth-child(3),
+.md-typeset div.col-widths td:nth-child(3) {
+  width: var(--w3);
+}
+
+.md-typeset div.col-widths th:nth-child(4),
+.md-typeset div.col-widths td:nth-child(4) {
+  width: var(--w4);
+}
+
+.md-typeset div.col-widths td code {
+  overflow-wrap: anywhere;
+}
+
+.md-typeset figure.align-left {
+  margin: 1em 0;
+  text-align: left;
+}
+
+.md-typeset figure > figcaption {
+  font-size: 0.7rem;
+  color: var(--md-default-fg-color--light);
+  margin-top: 0.4em;
+  max-width: 100%;
+}
