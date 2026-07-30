@@ -89,7 +89,7 @@ The first calibration pose is also the detection pose. Make sure to use a suitab
 </tr>
 </table>
 
-After calibration, an optional verification step can be performed to check its accuracy. Applying it, moves the robot TCP to the bottom left corner of the calibration plate (with an adjustable safety height offset). It is necessary that the calibration plate was not moved between the calibration and the verification step. In case of bad results, check the setup and rerun the calibration.
+After calibration, an optional verification step can be performed to check its accuracy. Applying it moves the robot TCP to the bottom left corner of the calibration plate (with an adjustable safety height offset). It is necessary that the calibration plate was not moved between the calibration and the verification step. In case of bad results, check the setup and recalibrate.
 
 !!! note
 
@@ -116,7 +116,7 @@ With the object position sent by the camera, the robot moves to the object pose.
 
 ## Mobile platform use case
 
-Further use case, e.g. to correct positional deviations of mobile platforms in front of a machine or shelf.
+A further use case is to correct positional deviations of mobile platforms in front of a machine or shelf.
 
 <figure class="align-left">
 <img src="images/on_robot/mobile_platform_camera_on_robot.png" alt="mobile_platform_camera_on_robot" class="uniform-width-600"/>
@@ -124,7 +124,7 @@ Further use case, e.g. to correct positional deviations of mobile platforms in f
 
 If using camera and robot on a mobile platform, make sure that the calibration plate is mounted fixed at each machine or shelf as a reference position. Run the normal calibration process once at the beginning with several different poses with big variations (especially differences in the pose angles). Afterwards, in the run use case, when the mobile platform is in front of the machine or shelf, the camera captures only one image of the calibration plate and calculates the positional deviation of the mobile platform towards the target position. Use this info to update the reference frame of the machine or shelf if the handling pose is fixed.
 
-In case of variating handling poses at mobile platforms, it is possible to calibrate the camera-to-target relation and afterwards use the detect command. Run the normal calibration process once at the beginning with several different poses with big variations (especially differences in the pose angles). Afterwards, in the run use case, the camera captures only one image of the calibration plate and then captures another image via the detect command for flexible object picking. Make sure that the position of the mobile platform is unchanged between calibrating the camera to the calibration target and detecting the object, and that the same robot pose is used for calibrating the camera to the target and for detecting the objects.
+In case of varying handling poses at mobile platforms, it is possible to calibrate the camera-to-target relation and afterwards use the detect command. Run the normal calibration process once at the beginning with several different poses with big variations (especially differences in the pose angles). Afterwards, in the run use case, the camera captures only one image of the calibration plate and then captures another image via the detect command for flexible object picking. Make sure that the position of the mobile platform is unchanged between calibrating the camera to the calibration target and detecting the object, and that the same robot pose is used for calibrating the camera to the target and for detecting the objects.
 
 !!! note
 

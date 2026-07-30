@@ -1,17 +1,3 @@
-/* ==========================================================================
-   Image sizing helpers for the robot-vision-* docs sites
-   --------------------------------------------------------------------------
-   Applied from Markdown via attr_list, e.g.
-
-     ![Wiring](images/wiring.png){ .uniform-width-600 }
-
-   Kept byte-identical in every repo -- edit it in context/style/css/ and
-   re-copy, never edit a repo copy directly.
-   ========================================================================== */
-
-/* Fixed target widths, but never wider than the content column -- the bare
-   `width: 200px` form used previously overflowed the page on narrow screens.
-   `max-width: 100%` plus `height: auto` keeps the aspect ratio intact. */
 img.uniform-width-200 {
   width: 200px;
   max-width: 100%;
@@ -42,20 +28,11 @@ img.uniform-width-1000 {
   height: auto;
 }
 
-/* Screenshots of device UIs read better with a hairline edge, otherwise a
-   white-background screenshot bleeds into the page. */
 .md-typeset figure img,
 .md-typeset p > img {
   border-radius: 0.1rem;
 }
 
-/* --------------------------------------------------------------------------
-   Tables containing images
-   --------------------------------------------------------------------------
-   Several pages lay out screenshot + caption pairs inside a table. Left-align
-   and vertically center so rows of differing image heights stay readable, and
-   drop the default figure margin so cells don't gain extra padding.
-   -------------------------------------------------------------------------- */
 .md-typeset table:not([class]) td {
   text-align: left;
   vertical-align: middle;
@@ -65,30 +42,6 @@ img.uniform-width-1000 {
   margin: 0;
 }
 
-/* --------------------------------------------------------------------------
-   Table column widths
-   --------------------------------------------------------------------------
-   mkdocs/zensical tables auto-size columns from content, which lets a narrow
-   column (e.g. a `Type` column) squeeze a wide one (e.g. a code-heavy
-   `Variable` column) into an ugly per-character wrap. attr_list cannot put a
-   class on a markdown table itself (implied element, no textual position to
-   attach to -- see python-markdown/markdown#312), so wrap the table in a div
-   via the pymdownx.blocks.html extension instead, passing the desired
-   percentages as CSS custom properties on that div:
-
-     /// html | div.col-widths
-         attrs: {style: "--w1: 35%; --w2: 65%;"}
-
-     | Variable | Description |
-     | --- | --- |
-     | ... |
-     ///
-
-   --w1..--w4 set the width of columns 1-4; only set as many as the table
-   has, and make them sum to 100%. Requires "pymdownx.blocks.html" = {} in
-   the repo's zensical.toml markdown extensions. No CSS changes needed for a
-   new ratio -- just set different --wN values in the markdown.
-   -------------------------------------------------------------------------- */
 .md-typeset div.col-widths table {
   table-layout: fixed;
   width: 100%;
@@ -114,22 +67,15 @@ img.uniform-width-1000 {
   width: var(--w4);
 }
 
-/* table-layout: fixed stops long unbroken tokens (e.g. `we_object_pose`) from
-   forcing the column wider than its set width -- let them wrap on word
-   boundaries (`_`) instead of overflowing the cell. */
 .md-typeset div.col-widths td code {
   overflow-wrap: anywhere;
 }
 
-/* --------------------------------------------------------------------------
-   Figures
-   -------------------------------------------------------------------------- */
 .md-typeset figure.align-left {
   margin: 1em 0;
   text-align: left;
 }
 
-/* CD caption spec: smallest text size, left-aligned, Dark Gray. */
 .md-typeset figure > figcaption {
   font-size: 0.7rem;
   color: var(--md-default-fg-color--light);

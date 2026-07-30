@@ -4,7 +4,7 @@ This job is used for the `target:pose` and `calibration:target` commands of the 
 
 In case of camera and robot mounted on a mobile platform, load the template `Correct position via calibration plate`.
 
-Adjust the focus and brightness of the camera to get a sharp and well illuminated image. By default, Trigger Mode is set to `On` and Trigger Source to `Software`. Adjust `Trigger Mode` to `Off` and switch to `Run Mode` in order to adjust the camera image. Afterward, change the setting back to Software trigger. If working with color images, make sure that `Create BGRA Image` is active at the input camera (only relevant if working with URCap).
+Adjust the focus and brightness of the camera to get a sharp and well-illuminated image. By default, Trigger Mode is set to `On` and Trigger Source to `Software`. Adjust `Trigger Mode` to `Off` and switch to `Run Mode` in order to adjust the camera image. Afterward, change the setting back to Software trigger. If working with color images, make sure that `Create BGRA Image` is active at the input camera (only relevant if working with URCap).
 
 <figure class="align-left">
 <img src="images/univision/correct_position_via_calibration_plate.png" alt="level2_landing" class="uniform-width-1000"/>
