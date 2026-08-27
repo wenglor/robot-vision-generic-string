@@ -70,6 +70,7 @@ nav = [
   "4_1_0_three_point_calibration_at_robot.md",
   "4_2_0_job_in_univision.md",
   "4_3_0_robot_program.md",
+  "5_0_0_with_wenglor_robot_server.md",
   "5_1_0_basics_with_robot_server.md",
   "5_1_1_camera_on_robot.md",
   "5_1_2_camera_not_on_robot.md",
