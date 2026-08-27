@@ -1,6 +1,6 @@
 # 1. Use for Intended Purpose
 
-Machine Vision Devices can communicate directly to robots for [robot vision](https://www.wenglor.com/en/Robot-Vision/s/Robot+Vision) applications (e.g., [pick-and-place applications](https://www.wenglor.com/en/Robotic-Pick-and-Place-with-Smart-Camera/a/363)).
+Machine Vision Devices can communicate directly with robots for [robot vision](https://www.wenglor.com/en/Robot-Vision/s/Robot+Vision) applications (e.g., [pick-and-place applications](https://www.wenglor.com/en/Robotic-Pick-and-Place-with-Smart-Camera/a/363)).
 
 **Supported Machine Vision Devices:**
 
@@ -10,4 +10,4 @@ Machine Vision Devices can communicate directly to robots for [robot vision](htt
 !!! note
 
     For details about the Machine Vision Devices check the operating instructions of the device.  
-    The interface protocol for Robot Vision addresses users with knowledge in robotic programming and basic knowledge in Machine Vision.
+    This interface protocol is intended for users with experience in robot programming and basic knowledge of machine vision.

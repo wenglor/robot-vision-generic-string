@@ -1,2 +1,3 @@
-site/*
-context/*
+# Build output
+site/
+.cache/
