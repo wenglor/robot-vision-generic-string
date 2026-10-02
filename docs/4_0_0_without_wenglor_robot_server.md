@@ -8,7 +8,7 @@ The camera can be mounted on the robot or not on the robot. It is important that
   <img src="images/no_server/no_server_picking_plane.png" alt="without wenglor robot server, picking plane" class="uniform-width-200"/>
 </figure>
 
-Make sure to align the coordinate systems of the robot and the camera via `Module Image Coordinate System` within the uniVision job. Use `Module Image Calibration` within the uniVision job to eliminate the lens distortion and to calculate the coordinates in mm. It requires one or several images of the calibration plate [ZVZJ](https://www.wenglor.com/en/Accessories/Optics-Filters-Deflectors-and-Focusers/Calibration-Plates/c/cxmCID222488). Buy the product ZVZJ (recommended) or print the corresponding PDF on a flat and stiff material yourself. Use Device TCP to send the process data (e.g., coordinates of found object) to the robot.
+Make sure to align the coordinate systems of the robot and the camera via `Module Image Coordinate System` within the uniVision job. Use `Module Image Calibration` within the uniVision job to eliminate the lens distortion and to calculate the coordinates in mm. It requires one or several images of the calibration plate [ZVZJ](https://www.wenglor.com/Kalibrierplatten). Buy the product ZVZJ (recommended) or print the corresponding PDF on a flat and stiff material yourself. Use Device TCP to send the process data (e.g., coordinates of found object) to the robot.
 
 <figure class="align-left">
   <img src="images/no_server/no_server_board_placed.png" alt="without wenglor robot server, board placed" class="uniform-width-200"/>

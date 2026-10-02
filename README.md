@@ -2,7 +2,7 @@
 
 **Version:** 1.2.0
 
-This repository demonstrates a typical way of using the [robot vision](https://www.wenglor.com/en/Robot-Vision/s/Robot+Vision) interface with wenglor vision devices. The included [wenglor_vision_api_example.py](sources/wenglor_vision_api_example.py) file acts as a structural template.
+This repository demonstrates a typical way of using the [robot vision](https://www.wenglor.com/RobotVision) interface with wenglor vision devices. The included [wenglor_vision_api_example.py](sources/wenglor_vision_api_example.py) file acts as a structural template.
 
 ---
 

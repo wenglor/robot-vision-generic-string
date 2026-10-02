@@ -9,7 +9,7 @@ Create two socket connections from the robot:
 
 !!! note
 
-    For details, check the network interfaces chapter at the operating instructions of the software [wenglor uniVision 3 (DNNF023)](https://www.wenglor.com/en/Machine-Vision/Machine-Vision-Software/Image-Processing-Software-uniVision-3/wenglor-uniVision-3-Software/p/DNNF023).
+    For details, check the network interfaces chapter at the operating instructions of the software [wenglor uniVision 3 (DNNF023)](https://www.wenglor.com/product/DNNF023).
 
 The pseudo code on the robot side looks as follows:
 
@@ -26,4 +26,4 @@ The pseudo code on the robot side looks as follows:
 
     - In case of a camera on the robot, make sure that the robot position when triggering the camera is the same position that was used for calibrating the camera via `Module Image Calibration`.
     - The `<T/>` command on the LIMA Read Write Limited socket triggers the job tree of uniVision. If the job contains `Module Device TCP` and the port set in the robot program matches the port set in uniVision, `Module Device TCP` sends the linked data.
-    - For details about Device TCP and LIMA commands, check the operating instructions of the software [wenglor uniVision 3 (DNNF023)](https://www.wenglor.com/en/Machine-Vision/Machine-Vision-Software/Image-Processing-Software-uniVision-3/wenglor-uniVision-3-Software/p/DNNF023).
+    - For details about Device TCP and LIMA commands, check the operating instructions of the software [wenglor uniVision 3 (DNNF023)](https://www.wenglor.com/product/DNNF023).

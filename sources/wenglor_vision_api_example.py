@@ -21,8 +21,11 @@ W_VISION_DEVICE_PORT: int = 32006
 # Choose between "camera_on_robot" or "camera_not_on_robot"
 W_USE_CASE: str = "camera_on_robot"
 
-# Choose between "zvzj001", "zvzj002", "zvzj003", "zvzj004"
-# Choose "zvzj001" instead of "zvzj005" and "zvzj002" instead of "zvzj006"
+# Calibration target:
+# "zvzj001" | "zvzj002" | "zvzj003" | "zvzj004" |
+# "24x30mm" | "375x550mm" | "550x800mm"
+# if you are using zvzj005, replace with zvzj001 and
+# if you are using zvzj006, replace with zvzj002
 W_CALIBRATION_TARGET: str = "zvzj001"
 
 # All uniVision jobs require the "device robot vision"
@@ -58,10 +61,10 @@ w_calibration_done: bool = False      # Indicates whether calibration is complet
 W_MACHINE_POSES_TAUGHT: bool = False
 
 # This is the reference frame for all fixed poses inside the machine
-w_reference_frame: list = [0, 0, 0, 0, 0, 0]  
+w_reference_frame: list = [0, 0, 0, 0, 0, 0]
 
 # This is a dummy pose that represents any pose in the machine relative to `w_reference_frame`
-W_POSE_IN_MACHINE: list = [0, 0, 0, 0, 0, 0]  
+W_POSE_IN_MACHINE: list = [0, 0, 0, 0, 0, 0]
 
 # --------------------- End of user configuration -------------------------------------------------------------------------
 
@@ -75,11 +78,11 @@ vision_socket: socket.socket = None
 def ui_message(text: str):
     """Simulate a message in the user interface."""
     print("[UI]:", text)
-    
+
 def exit_program(text: str):
     ui_message("Exiting program: " + text)
     sys.exit()
-    
+
 def set_reference_frame(pose: list):
     """Simulate updating the robot reference frame based on the detected target pose."""
     w_reference_frame[:] = pose[:]
@@ -119,7 +122,7 @@ def to_string(pose: list):
     """Convert a pose to a string representation to send to the vision device."""
     # Before converting to a string, ensure the pose follows the expected vision system convention.
     pose = pose_to_vision_convention(pose)
-    
+
     pose_data = ','.join(map(str, pose))
     # Add brackets to match the expected format
     pose_string = "[" + pose_data + "]"
@@ -138,7 +141,7 @@ def str_to_float(response: str):
         return val, True
     except:
         return 0.0, False
-    
+
 def is_pose_set(pose: list):
     """Check whether a pose is set to non-zero values."""
     return pose != [0, 0, 0, 0, 0, 0]
@@ -160,10 +163,10 @@ def to_pose(response: str):
     pose = response.strip("()").split(",")
     if len(pose) != 6:
         exit_program("Invalid pose format received: " + response)
-    
+
     # Convert string values to float
     pose = [float(x.strip()) for x in pose]
-    
+
     # Convert the pose from the vision convention to the robot convention.
     pose = pose_to_robot_convention(pose)
     return pose
@@ -277,9 +280,11 @@ def set_error_code(error_code: int):
     elif code == 5008:
         cam_error_message = "No object found"
     elif code == 5009:
-        cam_error_message = "Bad or empty device message"
+        cam_error_message = "Bad or empty device robot vision message"
     elif code == 5010:
         cam_error_message = "Index error"
+    elif code == 5011:
+        cam_error_message = "Calibration pose variation insufficient"
     else:
         cam_error_message = "Unknown error"
 
@@ -303,7 +308,7 @@ def check_reply(response: str):
 def load_job(job_name: str):
     """Load a uniVision job on the vision system."""
     send_and_receive("job:change[" + job_name + "];")
-    
+
 def get_job():
     """Get the currently loaded uniVision job."""
     return send_and_receive("job:get;")
@@ -320,7 +325,7 @@ def update_camera_status():
         w_calibration_done = False
     else:
         w_calibration_done = True
-        
+
 def clear_calibration_buffer():
     """Clear the calibration buffer in the vision system."""
     send_and_receive("calibration:clear;")
@@ -329,7 +334,7 @@ def add_calibration_pose(pose: list):
     """Trigger the vision system and add the provided pose as a calibration pose."""
     tcp_pose = to_string(pose)
     send_and_receive("calibration:add[" + tcp_pose + "];")
-    
+
 def calculate_calibration():
     """Trigger calibration calculation based on added poses and captured images."""
     cmd = "calibration:calculate[" + W_USE_CASE + "," + W_CALIBRATION_TARGET + "];"
@@ -346,23 +351,23 @@ def calibrate_to_ground():
     This also creates a new calibration file if the robot-to-camera relation was
     calibrated previously with the `calibration:calculate` command.
     """
-    
+
     if W_USE_CASE != "camera_not_on_robot":
         ui_message("Calibration to ground skipped, only relevant for 'camera_not_on_robot' use case")
         return
     cmd = "calibration:ground[" + W_CALIBRATION_TARGET + "];"
     send_and_receive(cmd)
-    
+
 def calibrate_to_target():
     """Calibrate the camera-to-target relation for the selected use case.
 
     This does not create a new calibration file. The calibration is stored only
     temporarily in the vision device buffer.
     """
-    
+
     cmd = "calibration:target[" + W_USE_CASE + "," + W_CALIBRATION_TARGET + "];"
     send_and_receive(cmd)
-    
+
 
 def run_calibration():
     """Executes a calibration procedure for the vision system."""
@@ -410,7 +415,7 @@ def run_calibration():
 
     move_j(W_CALIB_POSE_5)
     add_calibration_pose(W_CALIB_POSE_5)
-    
+
     # You can add more calibration poses if needed, but at least five are recommended for good results.
 
     # Compute calibration results.
@@ -435,15 +440,15 @@ def run_calibration():
             exit_program("Calibration to ground aborted")
 
 def validate_calibration(offset_mm: float):
-    
+
     update_camera_status()
-    
+
     if not w_calibration_done:
         ui_message("Calibration is not complete and cannot be validated.")
         return
-    
+
     confirmed = user_dialog("Move to detection pose and confirm to validate calibration?")
-    
+
     if not confirmed:
         ui_message("Calibration validation aborted")
         return
@@ -458,7 +463,7 @@ def validate_calibration(offset_mm: float):
     pose[2] = pose[2] + offset_mm  # Assume Z is at index 2.
     move_l(pose)
     user_dialog("Confirm when calibration result was checked.")
-    
+
 def detect_target():
     """Get the calibration target pose from the vision system based on the current TCP pose."""
     pose_str = to_string(get_tcp_pose())
@@ -503,15 +508,15 @@ def read_value_by_index(index: int):
 def calibrate_if_needed():
     """Run calibration if no calibration has been done yet."""
     global W_SAFETY_OFFSET_MM
-    
+
     update_camera_status()
 
     if not w_calibration_done:
         ui_message("No calibration found, starting calibration procedure.")
         run_calibration()
-        
+
         # Update camera status again after calibration.
-        update_camera_status()  
+        update_camera_status()
         if not w_calibration_done:
             exit_program("Calibration failed. Aborting program.")
         else:
@@ -529,30 +534,30 @@ def prepare_detection():
     move_j(w_detection_pose)
 
 def single_detection():
-    
+
     calibrate_if_needed()
-    
+
     load_job(W_DETECT_OBJECTS_JOB)
     move_j(w_detection_pose)
-    
+
 
     object_pose = detect_objects()
     # Access index 0 since we only expect one object.
     shape = read_shape_by_index(0)
-    
+
     # Link additional value in the uniVision job before using read_value_by_index.
     #user_value = read_value_by_index(0)
-    
+
     # Add conditional checks for `shape` or `user_value` here.
-    
+
     move_l(object_pose)
 
     close_socket()
 
 def multiple_detection():
-    
+
     calibrate_if_needed()
-    
+
     load_job(W_DETECT_OBJECTS_JOB)
     move_j(w_detection_pose)
 
@@ -565,7 +570,7 @@ def multiple_detection():
     for i in range(num_objects):
         pose = read_pose_by_index(i)
         shape = read_shape_by_index(i)
-        
+
         # Link additional value in the uniVision job before using read_value_by_index.
         #user_value = read_value_by_index(0)
 
@@ -574,31 +579,31 @@ def multiple_detection():
         move_l(pose)
 
     close_socket()
-    
+
 def update_reference_frame():
     calibrate_if_needed()
-    
+
     load_job(W_DETECT_TARGET_JOB)
-    
+
     # Move to the pose where the vision device can see the calibration target.
     move_j(w_detection_pose)
-    
+
     target_pose = detect_target()
-    
+
     set_reference_frame(target_pose)
-    
+
     if not W_MACHINE_POSES_TAUGHT:
         ui_message("Reference frame updated. Please teach poses now relative to w_reference_frame")
         exit_program("Set W_MACHINE_POSES_TAUGHT to True and restart the program after teaching the poses.")
-        
+
     # The machine reference frame is now updated, and so are the poses inside the machine.
 
     # Optionally add an intermediate support pose.
-    
+
     # Move to poses in the machine that were taught relative to `w_reference_frame`.
     # `W_POSE_IN_MACHINE` is just a dummy pose.
     move_l(W_POSE_IN_MACHINE)
-    
+
 def call_user_command():
     if W_USER_COMMAND == "single_detection":
         single_detection()

@@ -1,6 +1,6 @@
 # 5.4 Detection Job in uniVision
 
-Open the device website of the Machine Vision Device, select the tab `Jobs`, and open the current job in the [uniVision 3 software](https://www.wenglor.com/en/Machine-Vision/Machine-Vision-Software/Image-Processing-Software-uniVision-3/c/cxmCID222459).
+Open the device website of the Machine Vision Device, select the tab `Jobs`, and open the current job in the [uniVision 3 software](https://www.wenglor.com/uniVision3).
 
 <figure class="align-left">
 <img src="images/level2_jobs.png" alt="level2_jobs" class="uniform-width-600"/>
@@ -14,7 +14,7 @@ Load the template `Pick objects with robot` for easy setup.
 
 Adjust the focus and brightness of the camera to get a sharp and well-illuminated image. By default, Trigger Mode is set to `On` and Trigger Source to `Software`. Adjust `Trigger Mode` to `Off` and switch to `Run Mode` in order to adjust the camera image. Afterward, change `Trigger Source` back to `Software`. If working with color images, make sure that `Create BGRA Image` is active at the input camera (only relevant if working with URCap).
 
-Teach your object at `Module Image Locator` (or `Module Image Pattern Match`). For details, check the operating instructions of the [software wenglor uniVision 3 (DNNF023)](https://www.wenglor.com/en/Machine-Vision/Machine-Vision-Software/Image-Processing-Software-uniVision-3/wenglor-uniVision-3-Software/p/DNNF023).
+Teach your object at `Module Image Locator` (or `Module Image Pattern Match`). For details, check the operating instructions of the [software wenglor uniVision 3 (DNNF023)](https://www.wenglor.com/product/DNNF023).
 
 <figure class="align-left">
 <img src="images/uniVision/locator.png" alt="locator" class="uniform-width-1000"/>
@@ -57,7 +57,7 @@ Link the result list of `Module Image Locator` or `Module Image Pattern Match` t
 
 !!! note
 
-    - It is possible to detect and pick multiple objects in a single image capture (if set up accordingly in the [uniVision](https://www.wenglor.com/en/Machine-Vision/Machine-Vision-Software/Image-Processing-Software-uniVision-3/wenglor-uniVision-3-Software/p/DNNF023) job).
+    - It is possible to detect and pick multiple objects in a single image capture (if set up accordingly in the [uniVision](https://www.wenglor.com/product/DNNF023) job).
     - Offsets in x and y can be set directly in `Module Image Locator` or `Module Image Pattern Match`.
     - Pixel results for x and y can only be used by the robot if they are distorted pixel coordinates. Modules without a calibration linked at the module calibration produce distorted pixel coordinates. If a calibration is linked at the module calibration, the module calculates undistorted pixel coordinates instead, which `Device Robot Vision` does not support. Make sure that only distorted pixel coordinates are linked at `Device Robot Vision`.
 

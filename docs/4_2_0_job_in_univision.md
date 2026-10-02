@@ -1,6 +1,6 @@
 # 4.2 Job in uniVision
 
-Open the device website of the Machine Vision Device (by entering the IP address in the browser, by default `192.168.100.1`), access the tab `Jobs`, and open the current job in the [uniVision 3 software](https://www.wenglor.com/en/Machine-Vision/Machine-Vision-Software/Image-Processing-Software-uniVision-3/c/cxmCID222459).
+Open the device website of the Machine Vision Device (by entering the IP address in the browser, by default `192.168.100.1`), access the tab `Jobs`, and open the current job in the [uniVision 3 software](https://www.wenglor.com/uniVision3).
 
 <figure class="align-left">
   <img src="images/level2_jobs.png" alt="acquisition_control_detect_job_generic" class="uniform-width-1000"/>
@@ -16,7 +16,7 @@ Use `Module Image Coordinate System` in order to create a common frame between c
   <img src="images/no_server/no_server_univision_coordinate_system.png" alt="acquisition_control_detect_job_generic" class="uniform-width-1000"/>
 </figure>
 
-Use `Module Image Calibration` to eliminate the lens distortion and to calculate the coordinates in mm. Buy the calibration plate [ZVZJ](https://www.wenglor.com/en/Accessories/Optics-Filters-Deflectors-and-Focusers/Calibration-Plates/c/cxmCID222488) (recommended) or print the corresponding PDF yourself on a flat and stiff material. Put the calibration plate in the field of view of the camera. Select the corresponding size of the calibration plate ZVZJ at `Module Image Calibration`, click on `Capture Image` and afterward on `Calibrate`. The Z Offset of -4 mm compensates for the height of the calibration plate ZVZJ. Adjust it if the height of your calibration plate is different.
+Use `Module Image Calibration` to eliminate the lens distortion and to calculate the coordinates in mm. Buy the calibration plate [ZVZJ](https://www.wenglor.com/Kalibrierplatten) (recommended) or print the corresponding PDF yourself on a flat and stiff material. Put the calibration plate in the field of view of the camera. Select the corresponding size of the calibration plate ZVZJ at `Module Image Calibration`, click on `Capture Image` and afterward on `Calibrate`. The Z Offset of -4 mm compensates for the height of the calibration plate ZVZJ. Adjust it if the height of your calibration plate is different. All options listed at `Calibration Size` in `Module Image Calibration` are supported.
 
 <figure class="align-left">
   <img src="images/no_server/no_server_univision_image_calibration.png" alt="acquisition_control_detect_job_generic" class="uniform-width-1000"/>
@@ -43,6 +43,6 @@ Use Device TCP to send the result via socket messaging to the robot.
 
 !!! note
 
-    For details about uniVision 3, check the separate operating instructions of the software [wenglor uniVision 3 (DNNF023)](https://www.wenglor.com/en/Machine-Vision/Machine-Vision-Software/Image-Processing-Software-uniVision-3/wenglor-uniVision-3-Software/p/DNNF023).
+    For details about uniVision 3, check the separate operating instructions of the software [wenglor uniVision 3 (DNNF023)](https://www.wenglor.com/product/DNNF023).
 
 Save the job in the projects folder of the Machine Vision Device.
