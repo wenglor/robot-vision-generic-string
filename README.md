@@ -1,6 +1,6 @@
 # robot-vision-generic-string
 
-**Version:** 1.2.0
+**Version:** 1.3.0
 
 This repository demonstrates a typical way of using the [robot vision](https://www.wenglor.com/RobotVision) interface with wenglor vision devices. The included [wenglor_vision_api_example.py](sources/wenglor_vision_api_example.py) file acts as a structural template.
 

@@ -9,6 +9,9 @@ import socket
 import time
 import sys
 
+# Version: 1.3.0
+# Author:  wenglor sensoric group
+
 # -------------------- User configuration -------------------
 
 # Define parameters related to vision system and calibration
