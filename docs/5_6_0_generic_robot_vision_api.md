@@ -86,7 +86,7 @@ Overview of commands for string- and XML-based robots:
 | calibration:ground[calibration_target]; | 0 | Error code as negative number |
 | state[calibration_case]; | Two binary numbers <ul><li>First bit: Camera error (includes a camera connection error)</li> <li>Second bit: Calibration state</li></ul> | Error code as negative number |
 | detect[calibration_case,pose_information]; | Object pose (array of floating point numbers) | Error code as negative number |
-| num_objects:get; | Number of objects available in robot server (positive number) | Error code as negative number |
+| num_objects:get; | Number of objects available in robot server (positive number) | No error value (`0` or the number of objects is returned) |
 | validate[calibration_case,detection_pose]; | Calibration target pose (array of floating point numbers) | Error code as negative number |
 | pose:get[index]; | Object pose to the object with the corresponding index (starting with 0) (Array of floating point numbers) | Error code as negative number |
 | shape:get[index]; | Shape model linked in `Device Robot Vision` to the object with the corresponding index (starting with 0) (number) | Error code as negative number |
@@ -99,10 +99,10 @@ Overview of commands for string- and XML-based robots:
 | Code number | Error message | Notes |
 | -- | -- | -- |
 | -5001 | General Error | If an error was recognized, but could not be assigned to any other error code. |
-| -5002 | Badly formatted request | <ul><li>If the extraction of the parameter failed.</li><br> <li>The command ending is missing.</li><br><li>The command is unknown.</li><br></ul> |
+| -5002 | Badly formatted request | <ul><li>If the extraction of the parameter failed.</li><br> <li>The command ending is missing.</li><br><li>The command is unknown.</li><br><li>The `calibration_case` is unknown.</li><br><li>The `calibration_target` is unknown.</li><br><li>The index is not a number.</li><br></ul> |
 | -5003 | No connection to uniVision | <ul><li>The required connection to the processing instance is not available.</li><br> <li>The required connection to `Device Robot Vision` is not available.</li><br></ul> |
 | -5004 | Unknown uniVision job name | If the job could not be loaded, but for a different reason than a connection issue. |
-| -5005 | Badly configured uniVision job | If the number of shape models of locator/pattern match does not fit to the configuration of `Device Robot Vision`. |
+| -5005 | Badly configured uniVision job | <ul><li>If the number of shape models of locator/pattern match does not fit to the configuration of `Device Robot Vision`.</li><br><li>If the additional value requested with `value:get[index];` is empty.</li><br></ul> |
 | -5006 | Calibration failed | If the calibration failed for any reason. |
 | -5007 | No calibration data | If the required calibration data is not available to calculate the 3d object pose. |
 | -5008 | No object found | If `Device Robot Vision` sends result true count = 0. |
